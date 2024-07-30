@@ -1,0 +1,4 @@
+/home/sotobotero/Desktop/paymentchainparent/businessdomain/product/src/main/java/com/paymentchain/product/ProductApplication.java
+/home/sotobotero/Desktop/paymentchainparent/businessdomain/product/src/main/java/com/paymentchain/product/respository/ProductRepository.java
+/home/sotobotero/Desktop/paymentchainparent/businessdomain/product/src/main/java/com/paymentchain/product/entities/Product.java
+/home/sotobotero/Desktop/paymentchainparent/businessdomain/product/src/main/java/com/paymentchain/product/controller/ProductRestController.java

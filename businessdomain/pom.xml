@@ -15,6 +15,7 @@
     
     <modules>
         <module>customer</module>
+        <module>product</module>
     </modules>
     
     
@@ -24,6 +25,7 @@
         <org.lombo.version>1.18.30</org.lombo.version>    
         <org.springdoc.version>2.3.0</org.springdoc.version>     
         <org.mockito.version>5.7.0</org.mockito.version>
+         
     </properties>
     
     <dependencyManagement>
@@ -96,16 +98,16 @@
             <version>${org.mockito.version}</version>
             <scope>test</scope>
         </dependency>   
-     <dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
-    <version>1.0.2</version>
-    <exclusions>
-        <exclusion>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>     
 </project>
