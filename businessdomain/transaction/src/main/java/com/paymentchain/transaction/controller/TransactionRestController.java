@@ -3,7 +3,6 @@ package com.paymentchain.transaction.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,7 +72,7 @@ public class TransactionRestController {
   public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
 
     Optional<Transaction> findById = transactionRepository.findById(id);
-    if(findById.get() != null){
+    if (findById.get() != null) {
       transactionRepository.delete(findById.get());
     }
 

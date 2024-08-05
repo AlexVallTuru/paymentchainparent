@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
@@ -117,10 +116,15 @@ public class CustomerRestController {
     public Customer getByCode(@RequestParam(name = "code") String code) {
         Customer customer = customerRepository.findByCode(code);
         List<CustomerProduct> products = customer.getProducts();
+
         products.forEach(x ->{
             String productName = getProductName(x.getId());
             x.setProductName(productName);
         });
+
+        List<?> transactions = getTransactions(customer.getIban());
+        customer.setTransactions(transactions);
+
         return customer;
        
     }
@@ -138,6 +142,22 @@ public class CustomerRestController {
                 .retrieve().bodyToMono(JsonNode.class).block();
         String name = block.get("name").asText();
         return name;
+    }
+
+    private List<?> getTransactions(String iban) {
+        WebClient build = webClientBuilder.clientConnector(new ReactorClientHttpConnector(client))
+        .baseUrl("http://localhost:8082/transaction")
+        .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+        .build();
+
+        List<?> transaction = build.method(HttpMethod.GET).uri(uriBuilder -> uriBuilder
+        .path("/customer/transactions")
+        .queryParam("ibanAccount", iban)
+        .build())
+        .retrieve().bodyToFlux(Object.class).collectSortedList().block();
+
+        return transaction;
+
     }
     
     
