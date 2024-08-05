@@ -1,5 +1,6 @@
 package com.paymentchain.transaction.entities;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -16,8 +17,8 @@ public class Transaction {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String reference;
-    private String iban;
-    private Date date;
+    private String ibanAccount;
+    private LocalDateTime date;
     private double amount;
     private double fee;
     private String description;
